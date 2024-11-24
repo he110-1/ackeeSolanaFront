@@ -95,7 +95,7 @@ export const HomeView: FC = ({ }) => {
         if(posts[i].liked == false){
           await program.methods.likepost().accounts({
             user: wallet.publicKey,
-            post: posts[i].account,
+            post: posts[i].account
           }).rpc();
           console.log("Post successfuly liked !!!")
         }else{
