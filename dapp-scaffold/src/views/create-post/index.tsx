@@ -41,7 +41,7 @@ export const CreatePostView: FC = ({ }) => {
         [POST_SEED,wallet.publicKey.toBuffer()], 
         program.programId
       );
-      await program.methods.createPost(POST_SEED[0], caption).accounts({
+      await program.methods.createPost(POST_SEED[0], caption).accountsStrict({
         postAuthor: wallet.publicKey,
         post: post_pkey,
         systemProgram: web3.SystemProgram.programId

@@ -58,7 +58,7 @@ export const ChatView: FC = ({ }) => {
         alice.toBuffer()
       ],program.programId);
       try{
-        const tx = await program.methods.initDiscussion(alice).accounts({
+        const tx = await program.methods.initDiscussion(alice).accountsStrict({
           msgsender: wallet.publicKey,
           discussion: discussion_pkey,
           systemProgram: web3.SystemProgram.programId
@@ -68,10 +68,9 @@ export const ChatView: FC = ({ }) => {
         console.log("The discussion is already initiated")
       }
       // step 2: send the message
-      const tx = await program.methods.sendMsg(newMessage).accounts({
+      const tx = await program.methods.sendMsg(newMessage).accountsStrict({
         msgsender: wallet.publicKey,
-        discussion: discussion_pkey,
-        systemProgram: web3.SystemProgram.programId
+        discussion: discussion_pkey
       }).rpc();
 
       // step 3: make changes to the interface
